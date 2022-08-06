@@ -37,7 +37,7 @@ dockerized-image:
   stage: package
   image: docker
   before_script:
-    - docker login $REGISTRY_SERVER -p $REGISTRY_USER -u $REGISTRY_TOKEN
+    - docker login $REGISTRY_SERVER -u $REGISTRY_USER -p $REGISTRY_TOKEN
   only:
     - prod
     - develop
