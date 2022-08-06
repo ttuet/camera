@@ -1,9 +1,16 @@
 services:
   - name: docker:dind
 
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
 stages:
+  - test
   - build
   - package
+
+sast:
+  stage: test
 
 build:
   stage: build
