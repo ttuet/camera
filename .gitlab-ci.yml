@@ -1,0 +1,42 @@
+services:
+  - name: docker:dind
+
+stages:
+  - build
+  - package
+
+build:
+  stage: build
+  image: node
+  only:
+    - prod
+    - develop
+  script:
+    - echo "Getting runner specs"
+    - lscpu
+    - free -kh
+    - df -h
+    - lsblk
+    - echo "Start building App"
+    - yarn
+    - yarn build
+    - echo "Build successfully!"
+  artifacts:
+    expire_in: 30 mins
+    paths:
+      - build
+
+dockerized-image:
+  stage: package
+  image: docker
+  before_script:
+    - docker login $REGISTRY_SERVER -p $REGISTRY_USER -u $REGISTRY_TOKEN
+  only:
+    - prod
+    - develop
+  script:
+    - chmod +x ./pack.sh
+    - ./pack.sh
+  needs:
+    - job: build
+      artifacts: true
