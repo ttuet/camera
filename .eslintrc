@@ -1,17 +1,9 @@
 {
-  "extends": [
-    "react-app",
-    "airbnb",
-    "plugin:jsx-a11y/recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "jsx-a11y",
-    "prettier"
-  ],
+  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended", "prettier"],
+  "plugins": ["jsx-a11y", "prettier", "react", "@typescript-eslint", "prettier"],
   "rules": {
     "semi": 1,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", ".ts"] }],
     "react/react-in-jsx-scope": "off",
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
@@ -23,20 +15,20 @@
     ],
     "react/prop-types": "off",
 
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
-        "newlines-between": "always",
-        "alphabetize": { "order": "asc", "caseInsensitive": true }
-      }
-    ],
+    // "import/order": [
+    //   "error",
+    //   {
+    //     "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
+    //     "newlines-between": "always",
+    //     "alphabetize": { "order": "asc", "caseInsensitive": true }
+    //   }
+    // ],
     "import/default": "off",
     "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
-
+    "import/no-unresolved": "off",
     "jsx-a11y/anchor-is-valid": "off",
-
-    "prettier/prettier": ["error", {"endOfLine": "auto"}, { "usePrettierrc": true }]
+    "import/extensions": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }, { "usePrettierrc": true }]
   }
 }
