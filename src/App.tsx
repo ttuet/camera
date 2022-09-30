@@ -4,17 +4,19 @@ import './index.scss';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { publicRoutes } from './routes';
+import Home from './features/home/Home';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Routes>
+        {/* <Routes>
           {publicRoutes.map((item) => {
             const Page = item.component;
             return <Route key={item.path} path={item.path} element={<Page />} />;
           })}
-        </Routes>
+        </Routes> */}
+        <Home />
       </div>
     </Router>
   );
