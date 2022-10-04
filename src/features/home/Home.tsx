@@ -1,5 +1,26 @@
-import React, { useState } from 'react';
-import { getData } from './api';
+import { Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
-const Home = () => <div>Home</div>;
+import './home.scss';
+import 'antd/dist/antd.css';
+import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
+import { AxiosFactory } from '../../lib/axios';
+
+const UserService = AxiosFactory('http://localhost:8080');
+
+const Home = () => {
+  const clickLoad = () => {
+    toast.success('Hello');
+    toast.error('ERROR');
+    toast.warn('WARNM');
+    toast.info('INFO');
+  };
+
+  return (
+    <div>
+      <button onClick={clickLoad}>Load Data</button>
+    </div>
+  );
+};
 export default Home;

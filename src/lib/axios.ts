@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { trackPromise } from 'react-promise-tracker';
 
 export const AxiosFactory = (baseUrl: string) => {
   axios.interceptors.request.use(
@@ -28,21 +29,20 @@ export const AxiosFactory = (baseUrl: string) => {
     },
   });
 
-  const getFnc = (path: string, config?: AxiosRequestConfig) => {
-    console.log('PATH', path);
-    return axiosClient.get(path, config);
-  };
+  const getFnc = (path: string, config?: AxiosRequestConfig) =>
+    trackPromise(axiosClient.get(path, config));
 
-  const deleteFnc = (path: string, config?: AxiosRequestConfig) => axiosClient.delete(path, config);
+  const deleteFnc = (path: string, config?: AxiosRequestConfig) =>
+    trackPromise(axiosClient.delete(path, config));
 
   const putFnc = (path: string, data: any, config?: AxiosRequestConfig) =>
-    axiosClient.put(path, data, config);
+    trackPromise(axiosClient.put(path, data, config));
 
   const patchFnc = (path: string, data: any, config?: AxiosRequestConfig) =>
-    axiosClient.patch(path, data, config);
+    trackPromise(axiosClient.patch(path, data, config));
 
   const postFnc = (path: string, data: any, config?: AxiosRequestConfig) =>
-    axiosClient.post(path, data, config);
+    trackPromise(axiosClient.post(path, data, config));
 
   return {
     getFnc,
