@@ -29,7 +29,7 @@ const Layout = (props: Props) => {
         {children}
       </Spin>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

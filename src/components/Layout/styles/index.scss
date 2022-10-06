@@ -8,7 +8,7 @@
 
   .page_content {
     width: 85%;
-    height: calc(100vh - var(--sz_header_height) - var(--sz_footer_height));
+    height: calc(100vh - var(--sz_header_height));
     background-color: wheat;
   }
 }

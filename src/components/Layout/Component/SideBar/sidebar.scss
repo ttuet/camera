@@ -1,6 +1,6 @@
 .page-navbar {
   background-color: rgb(18, 38, 149);
-  height: calc(100vh - var(--sz_header_height) * 2);
+  height: calc(100vh - var(--sz_header_height));
   width: 15%;
   :hover {
     background-color: rgb(143, 130, 185);

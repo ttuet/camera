@@ -1,0 +1,27 @@
+.icon-container {
+  display: flex;
+  border: 1px aliceblue solid;
+  border-radius: 1rem;
+  width: fit-content;
+  height: auto;
+  padding: 10px;
+}
+
+.icon-container-open {
+  display: flex;
+  border: 1px aliceblue solid;
+  border-radius: 1rem;
+  width: fit-content;
+  height: auto;
+  padding: 10px;
+  background-color: aliceblue;
+}
+
+.down-arrow {
+  margin: 1px auto;
+}
+
+.icon-container:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
