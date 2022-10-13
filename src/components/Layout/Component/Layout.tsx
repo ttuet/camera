@@ -4,7 +4,7 @@ import { usePromiseTracker } from 'react-promise-tracker';
 
 import Footer from './Footer';
 import Header from './Header/header';
-import Navbar from './SideBar';
+import Navbar from './NavBar';
 import '../styles/index.scss';
 
 interface Props {
@@ -28,8 +28,6 @@ const Layout = (props: Props) => {
       >
         {children}
       </Spin>
-
-      {/* <Footer /> */}
     </div>
   );
 };

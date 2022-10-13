@@ -4,7 +4,7 @@ import './home.scss';
 import IconContainer from '../../components/common/IconDropdown';
 
 const Home = () => {
-  console.log('ABC');
+  console.log('Checkingnnn');
   return (
     <div>
       <img src="./cam.svg" alt="Hallo" />

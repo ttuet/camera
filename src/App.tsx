@@ -8,23 +8,25 @@ import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import { publicRoutes } from './routes';
 import Home from './features/home/Home';
 import Layout from './components/Layout/Component/Layout';
+import AppProviders from './providers/AppProviders';
 
 function App() {
-  console.log('JHHH');
   return (
-    <Router>
-      <div className="App">
-        <Layout>
-          <Routes>
-            {publicRoutes.map((item) => {
-              const Page = item.component;
-              return <Route key={item.path} path={item.path} element={<Page />} />;
-            })}
-          </Routes>
-        </Layout>
-        <ToastContainer position="top-right" hideProgressBar />
-      </div>
-    </Router>
+    <AppProviders>
+      <Router>
+        <div className="App">
+          <Layout>
+            <Routes>
+              {publicRoutes.map((item) => {
+                const Page = item.component;
+                return <Route key={item.path} path={item.path} element={<Page />} />;
+              })}
+            </Routes>
+          </Layout>
+          <ToastContainer position="top-right" hideProgressBar />
+        </div>
+      </Router>
+    </AppProviders>
   );
 }
 

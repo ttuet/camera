@@ -9,9 +9,7 @@ const Header = () => (
       <div className="app-logo" />
       <span className="app-name">Hệ thống camera thông minh</span>
     </div>
-    <div className="user-info">
-      <IconContainer url="../../../../assets/images/cam.svg" />
-    </div>
+    <div className="user-info" />
   </div>
 );
 
