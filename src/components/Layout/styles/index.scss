@@ -7,8 +7,9 @@
   background-color: black;
 
   .page_content {
+    overflow: auto;
     width: 88%;
     height: calc(100vh - var(--sz_header_height));
-    background-color: wheat;
+    background-color: white;
   }
 }

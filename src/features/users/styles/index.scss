@@ -1,0 +1,19 @@
+.page-users {
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+
+  .table-users {
+    .ant-table {
+      &-thead {
+        .ant-table-cell {
+          background-color: var(--cl-table-header-background);
+          color: white;
+        }
+      }
+
+      &-tbody {
+      }
+    }
+  }
+}

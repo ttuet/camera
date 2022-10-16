@@ -33,6 +33,8 @@
     "react/function-component-definition": "off",
     "react/button-has-type": "off",
     "react/jsx-boolean-value": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off"
   }
 }
