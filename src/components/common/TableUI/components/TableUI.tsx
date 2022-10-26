@@ -232,7 +232,7 @@ const TableUI = (props: Props) => {
     console.log('click row', _data);
   };
   return (
-    <div className={`table-container ${className ?? ''}`}>
+    <div className="table-container">
       <div className="table-container__title">
         <div className="table-action-group">
           <Tooltip placement="bottom" title="Tạo mới">
@@ -251,6 +251,7 @@ const TableUI = (props: Props) => {
         {hasTitle && <div className="table-title">{title}</div>}
       </div>
       <Table
+        className={`${className ?? ''}`}
         dataSource={indexData}
         columns={columnsWithOption}
         rowKey="id"
