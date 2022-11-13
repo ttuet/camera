@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.less';
 
 import { ToastContainer } from 'react-toastify';
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { publicRoutes } from './routes';
-import Home from './features/home/Home';
 import Layout from './components/Layout/Component/Layout';
 import AppProviders from './providers/AppProviders';
 
