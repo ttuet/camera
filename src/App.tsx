@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import 'antd/dist/antd.min.css';
+// import 'antd/dist/antd.css';
 
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';

@@ -1,10 +1,12 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ConfirmDialog from '../../components/common/confirmDialog/ConfirmDialog';
 import './index.scss';
 
-const LoginPage: React.FC = () => {
+const Register: React.FC = () => {
+  const navigate = useNavigate();
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -14,8 +16,8 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="login-form">
-      <span className="header">Đăng nhập</span>
+    <div className="register-form">
+      <span className="header">Đăng ký</span>
       <Form
         name="basic"
         initialValues={{ remember: true }}
@@ -41,25 +43,23 @@ const LoginPage: React.FC = () => {
           <Input.Password placeholder="*********" />
         </Form.Item>
 
-        <div className="action-container">
-          <Form.Item name="remember" valuePropName="checked" className="remeber-me">
-            <Checkbox>Giữ tôi đăng nhập</Checkbox>
-            <Link to="/forgot-password" className="fortgot-password">
-              Quên mật khẩu?
-            </Link>
-          </Form.Item>
-        </div>
+        <Form.Item
+          label="Nhập lại mật khẩu"
+          name="password-copy"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password placeholder="*********" />
+        </Form.Item>
 
         <Space direction="vertical" style={{ width: '100%' }}>
           <Button type="primary" htmlType="submit" block className="button-submit">
-            Đăng nhập
+            Đăng ký
           </Button>
         </Space>
-
         <Space direction="horizontal" style={{ marginTop: '48px' }}>
-          <Typography className="no-account">Không có tài khoản?</Typography>
-          <Link to="/register" className="fortgot-password">
-            Đăng ký ngay
+          <Typography className="already-account">Bạn đã có tài khoản?</Typography>
+          <Link to="/" className="link-to-login ">
+            Đăng nhập ngay
           </Link>
         </Space>
       </Form>
@@ -67,4 +67,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default Register;
