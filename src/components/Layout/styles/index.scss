@@ -8,9 +8,14 @@
 
   .page_content {
     overflow: auto;
-    width: 88%;
+    width: 100%;
     height: calc(100vh - var(--sz_header_height));
-    background-color: white;
+    background-color: #e5e5e5;
+    padding: 8px;
+
+    .ant-spin-container {
+      height: 100%;
+    }
   }
 }
 

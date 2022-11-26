@@ -33,7 +33,7 @@ const Sample: React.FC = () => {
       <ConfirmDialog
         title="Xác nhận"
         open={open}
-        content="Bạn có chắc muốn đăng xuất?"
+        content={modalText}
         onConfirm={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}

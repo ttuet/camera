@@ -2,7 +2,6 @@ import React from 'react';
 import { Spin } from 'antd';
 import { usePromiseTracker } from 'react-promise-tracker';
 
-import Footer from './Footer';
 import Header from './Header/header';
 import Navbar from './NavBar';
 import '../styles/index.scss';
@@ -17,17 +16,19 @@ const Layout = (props: Props) => {
 
   return (
     <div className="default-layout">
-      <Header />
       <Navbar />
-      <Spin
-        wrapperClassName="page_content"
-        spinning={promiseInProgress}
-        tip="Đang tải..."
-        size="large"
-        style={{ maxHeight: '100%' }}
-      >
-        {children}
-      </Spin>
+      <div style={{ width: '85%' }}>
+        <Header />
+        <Spin
+          wrapperClassName="page_content"
+          spinning={promiseInProgress}
+          tip="Đang tải..."
+          size="large"
+          style={{ maxHeight: '100%' }}
+        >
+          {children}
+        </Spin>
+      </div>
     </div>
   );
 };

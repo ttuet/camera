@@ -2,13 +2,15 @@
   padding: 4px;
   display: flex;
   flex-direction: column;
+  background-color: white;
 
+  height: 100%;
   .table-users {
     .ant-table {
       &-thead {
         .ant-table-cell {
-          background-color: var(--cl-table-header-background);
-          color: white;
+          // background-color: var(--cl_primary);
+          color: black;
         }
       }
     }

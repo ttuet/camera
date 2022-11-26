@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
 import AppProviders from './providers/AppProviders';
 import { PublicLayout } from './components/Layout/Component/PublicLayout';
-import Layout from './components/Layout/Component/Layout';
+import Layout from './components/Layout/Component/PrivateLayout';
 import { useAppSelector } from './hooks';
 
 function App() {

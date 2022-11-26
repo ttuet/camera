@@ -11,6 +11,7 @@ const LoginPage: React.FC = () => {
 
   const onFinish = (values: any) => {
     dispatch(setUser(['Tung Tung']));
+    console.log(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
