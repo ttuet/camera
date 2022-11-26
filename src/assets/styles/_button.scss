@@ -1,0 +1,26 @@
+.camera-button {
+  /* Primary/Turquoise */
+
+  padding: 8px 24px;
+  height: 48px;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+  text-align: center;
+
+  &-confirm {
+    background: #31b1b4;
+  }
+
+  &-cancel {
+    background: #f5f5f5;
+  }
+}

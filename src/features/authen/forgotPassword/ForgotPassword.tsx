@@ -1,11 +1,9 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
-import Checkbox from 'antd/lib/checkbox/Checkbox';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import ConfirmDialog from '../../components/common/confirmDialog/ConfirmDialog';
 import './index.scss';
 
-const Register: React.FC = () => {
+const ForgotPassword: React.FC = () => {
   const navigate = useNavigate();
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -16,8 +14,12 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="register-form">
-      <span className="header">Đăng ký</span>
+    <div className="forgot-password-form">
+      <span className="header">Quên mật khẩu</span>
+      <span style={{ color: '#0000008a', textAlign: 'initial' }} className="font-bold">
+        Không có gì phải lo lắng ! Chỉ cần nhập email của bạn và chúng tôi sẽ gửi cho bạn một liên
+        kết đặt lại mật khẩu.
+      </span>
       <Form
         name="basic"
         initialValues={{ remember: true }}
@@ -26,6 +28,7 @@ const Register: React.FC = () => {
         autoComplete="off"
         layout="vertical"
         requiredMark={false}
+        className="size-inherit"
       >
         <Form.Item
           label="Tên đăng nhập"
@@ -35,29 +38,13 @@ const Register: React.FC = () => {
           <Input placeholder="sample@gmail.com" />
         </Form.Item>
 
-        <Form.Item
-          label="Mật khẩu"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
-          <Input.Password placeholder="*********" />
-        </Form.Item>
-
-        <Form.Item
-          label="Nhập lại mật khẩu"
-          name="password-copy"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
-          <Input.Password placeholder="*********" />
-        </Form.Item>
-
         <Space direction="vertical" style={{ width: '100%' }}>
           <Button type="primary" htmlType="submit" block className="button-submit">
-            Đăng ký
+            Xác nhận
           </Button>
         </Space>
         <Space direction="horizontal" style={{ marginTop: '48px' }}>
-          <Typography className="already-account">Bạn đã có tài khoản?</Typography>
+          <Typography className="already-account">Bạn đã nhớ lại mật khẩu?</Typography>
           <Link to="/" className="link-to-login ">
             Đăng nhập ngay
           </Link>
@@ -67,4 +54,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default ForgotPassword;

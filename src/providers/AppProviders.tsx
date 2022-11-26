@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ConfigProvider } from 'antd';
 
 type ErrorProps = {
   error: any;
@@ -26,9 +27,17 @@ const AppProviders = (props: Props) => {
 
   return (
     <Suspense fallback={<span>Loading.....</span>}>
-      <ErrorBoundary FallbackComponent={OurFallbackComponent}>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      </ErrorBoundary>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#31B1B4',
+          },
+        }}
+      >
+        <ErrorBoundary FallbackComponent={OurFallbackComponent}>
+          <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        </ErrorBoundary>
+      </ConfigProvider>
     </Suspense>
   );
 };
