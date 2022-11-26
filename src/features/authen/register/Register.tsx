@@ -1,12 +1,9 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
-import Checkbox from 'antd/lib/checkbox/Checkbox';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import ConfirmDialog from '../../../components/common/confirmDialog/ConfirmDialog';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 const Register: React.FC = () => {
-  const navigate = useNavigate();
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
