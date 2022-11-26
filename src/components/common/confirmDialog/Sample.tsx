@@ -1,8 +1,8 @@
-import { Button, Modal } from 'antd';
+import { Button } from 'antd';
 import React, { useState } from 'react';
-import ConfirmDialog from '../../components/common/confirmDialog/ConfirmDialog';
+import ConfirmDialog from './ConfirmDialog';
 
-const ForgotPassword: React.FC = () => {
+const Sample: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
@@ -31,15 +31,15 @@ const ForgotPassword: React.FC = () => {
         Open Modal with async logic
       </Button>
       <ConfirmDialog
-        title="Title"
+        title="Xác nhận"
         open={open}
-        content="ABC"
-        // onOk={handleOk}
-        // confirmLoading={confirmLoading}
-        // onCancel={handleCancel}
+        content="Bạn có chắc muốn đăng xuất?"
+        onConfirm={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
       />
     </>
   );
 };
 
-export default ForgotPassword;
+export default Sample;
