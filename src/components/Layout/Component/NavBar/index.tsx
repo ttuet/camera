@@ -16,6 +16,18 @@ const fullSideBar = [
     name: 'Quản lý người dùng',
     path: '/users',
   },
+  {
+    code: 'STUDENT',
+    icon: 'user',
+    name: 'Quản lý sinh viên',
+    path: '/students',
+  },
+  {
+    code: 'STAFF',
+    icon: 'user',
+    name: 'Quản lý nhân viên',
+    path: '/staffs',
+  },
 ];
 const Navbar = () => {
   const location = useLocation();

@@ -13,14 +13,9 @@
     .table-action-group {
       display: flex;
       margin: auto 0;
-      .ant-btn-primary {
-        margin: 6px;
-        max-width: 40px;
+      min-height: 40px;
+      .btn-primary {
         background-color: var(--cl_primary);
-        border-radius: 8px;
-        &:hover {
-          background-color: rgb(170, 194, 240);
-        }
       }
     }
   }
