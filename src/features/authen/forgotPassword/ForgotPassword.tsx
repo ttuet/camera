@@ -1,10 +1,9 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 const ForgotPassword: React.FC = () => {
-  const navigate = useNavigate();
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };

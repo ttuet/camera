@@ -37,6 +37,17 @@
     "react/require-default-props": "off",
     "react/no-unused-prop-types": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-console": "off"
+    "no-console": "off",
+
+    "arrow-body-style": "warn"
+
+    // "@typescript-eslint/no-restricted-imports": [
+    //   "warn",
+    //   {
+    //     "name": "react-redux",
+    //     "importNames": ["useSelector", "useDispatch"],
+    //     "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+    //   }
+    // ]
   }
 }

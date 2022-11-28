@@ -1,12 +1,17 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
-import Checkbox from 'antd/lib/checkbox/Checkbox';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { CustomCheckbox } from '../../../components/Layout/Component/CustomCheckbox';
+import { useAppDispatch } from '../../../hooks';
+import { setUser } from '../../../slices/userSlice';
 import './index.scss';
 
 const LoginPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    dispatch(setUser(['Tung Tung']));
+    console.log(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -43,7 +48,7 @@ const LoginPage: React.FC = () => {
 
         <div className="action-container">
           <Form.Item name="remember" valuePropName="checked" className="remeber-me">
-            <Checkbox>Giữ tôi đăng nhập</Checkbox>
+            <CustomCheckbox style={{}}>Giữ tôi đăng nhập</CustomCheckbox>
             <Link to="/forgot-password" className="fortgot-password">
               Quên mật khẩu?
             </Link>

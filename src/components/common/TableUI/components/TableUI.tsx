@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Table } from 'antd';
+import { Button, Space, Table } from 'antd';
 import '../styles/index.scss';
 import Tooltip from 'antd/es/tooltip';
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
-import { type } from 'os';
 import { Key } from 'antd/lib/table/interface';
 
 type Props = {
@@ -70,18 +69,36 @@ const TableUI = (props: Props) => {
     <div className="table-container">
       <div className="table-container__title">
         <div className="table-action-group">
-          <Tooltip placement="bottom" title="Tạo mới">
-            <Button type="primary" icon={<PlusOutlined />} onClick={onCreate} />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Xem chi tiết">
-            <Button type="primary" icon={<EyeOutlined />} onClick={onView} />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Cập nhật">
-            <Button type="primary" icon={<EditOutlined />} onClick={onUpdate} />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Xóa">
-            <Button type="primary" icon={<DeleteOutlined />} onClick={onDelete} />
-          </Tooltip>
+          <Space wrap>
+            <Tooltip placement="bottom" title="Tạo mới">
+              <Button
+                type="primary"
+                shape="default"
+                icon={<PlusOutlined />}
+                onClick={onCreate}
+                className="btn-primary"
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Xem chi tiết">
+              <Button
+                type="primary"
+                icon={<EyeOutlined />}
+                onClick={onView}
+                className="btn-primary"
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Cập nhật">
+              <Button
+                type="primary"
+                icon={<EditOutlined />}
+                onClick={onUpdate}
+                className="btn-primary"
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Xóa">
+              <Button type="primary" icon={<DeleteOutlined />} onClick={onDelete} danger />
+            </Tooltip>
+          </Space>
         </div>
         {hasTitle && <div className="table-title">{title}</div>}
       </div>

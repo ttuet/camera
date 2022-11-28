@@ -1,4 +1,5 @@
 import TableUI from '../../../components/common/TableUI/components/TableUI';
+import '../styles/_index.scss';
 
 const data = [
   {
@@ -174,8 +175,9 @@ const columns = [
     dataIndex: 'website',
   },
 ];
+
 export function PageUsers() {
-  const handleClickRow = (data: any) => {
+  const handleClickRow = (_data: any) => {
     // console.log('data row', data);
   };
   return (
