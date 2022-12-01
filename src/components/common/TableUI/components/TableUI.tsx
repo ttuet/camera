@@ -4,6 +4,7 @@ import '../styles/index.scss';
 import Tooltip from 'antd/es/tooltip';
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
 import { Key } from 'antd/lib/table/interface';
+import { Column } from '../type';
 
 type Props = {
   className?: string;
@@ -20,7 +21,7 @@ type Props = {
   onClickRow: (_data: any) => void;
   showSelection: boolean;
   data: any[];
-  columns: any[];
+  columns: Column[];
 };
 
 const TableUI = (props: Props) => {
@@ -49,6 +50,7 @@ const TableUI = (props: Props) => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+
   const indexData = useMemo(
     () => data.map((item, index) => ({ ...item, rowNo: index + 1 })),
     [data]
@@ -61,7 +63,8 @@ const TableUI = (props: Props) => {
     return columns;
   }, [columns, hiddenRowNo]);
 
-  const handleClickRow = (_data: any) => {
+  const handleClickRow = (_data: any, index?: number) => {
+    if (typeof index === 'number') setSelectedRowKeys([index + 1]);
     onClickRow(_data);
   };
 
@@ -71,29 +74,13 @@ const TableUI = (props: Props) => {
         <div className="table-action-group">
           <Space wrap>
             <Tooltip placement="bottom" title="Tạo mới">
-              <Button
-                type="primary"
-                shape="default"
-                icon={<PlusOutlined />}
-                onClick={onCreate}
-                className="btn-primary"
-              />
+              <Button type="primary" shape="default" icon={<PlusOutlined />} onClick={onCreate} />
             </Tooltip>
             <Tooltip placement="bottom" title="Xem chi tiết">
-              <Button
-                type="primary"
-                icon={<EyeOutlined />}
-                onClick={onView}
-                className="btn-primary"
-              />
+              <Button type="primary" icon={<EyeOutlined />} onClick={onView} />
             </Tooltip>
             <Tooltip placement="bottom" title="Cập nhật">
-              <Button
-                type="primary"
-                icon={<EditOutlined />}
-                onClick={onUpdate}
-                className="btn-primary"
-              />
+              <Button type="primary" icon={<EditOutlined />} onClick={onUpdate} />
             </Tooltip>
             <Tooltip placement="bottom" title="Xóa">
               <Button type="primary" icon={<DeleteOutlined />} onClick={onDelete} danger />
@@ -103,14 +90,15 @@ const TableUI = (props: Props) => {
         {hasTitle && <div className="table-title">{title}</div>}
       </div>
       <Table
+        pagination={{ pageSize: 10 }}
         className={`${className ?? ''}`}
         dataSource={indexData}
         columns={columnsWithOption}
         rowKey="id"
-        rowSelection={showSelection ? rowSelection : undefined}
+        rowSelection={showSelection ? { ...rowSelection, type: 'checkbox' } : undefined}
         onRow={(record, rowIndex) => ({
           onClick: (event) => {
-            handleClickRow(record);
+            handleClickRow(record, rowIndex);
           },
         })}
       />

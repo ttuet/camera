@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/styles/index.scss';
+import 'typeface-open-sans';
 import { Provider } from 'react-redux';
 
 import { store } from './slices/index';

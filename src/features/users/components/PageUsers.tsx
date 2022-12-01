@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Dialog } from '../../../components/common/TableUI/components/Dialog';
 import TableUI from '../../../components/common/TableUI/components/TableUI';
 import '../styles/_index.scss';
 
@@ -177,9 +179,24 @@ const columns = [
 ];
 
 export function PageUsers() {
+  const [openDialog, setOpenDialog] = useState(false);
+
   const handleClickRow = (_data: any) => {
-    // console.log('data row', data);
+    console.log('data row', data);
   };
+
+  const handleCancel = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirm = () => {
+    setOpenDialog(false);
+  };
+
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+
   return (
     <div className="page-users">
       <TableUI
@@ -191,6 +208,16 @@ export function PageUsers() {
         title="Danh sách người dùng"
         columns={columns}
         data={data}
+        onCreate={() => {
+          setOpenDialog(true);
+        }}
+      />
+      <Dialog
+        open={openDialog}
+        title="Hello"
+        onCancel={handleCancel}
+        onClose={handleCancel}
+        onConfirm={handleConfirm}
       />
     </div>
   );
