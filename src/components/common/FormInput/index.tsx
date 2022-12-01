@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './index.css';
 import { PlusOutlined } from '@ant-design/icons';
 import {
   Form,
@@ -34,8 +33,8 @@ const FormDisabledDemo = () => {
         Form disabled
       </Checkbox>
       <Form
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 18 }}
         layout="horizontal"
         onValuesChange={onFormLayoutChange}
         disabled={componentDisabled}
