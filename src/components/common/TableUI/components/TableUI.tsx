@@ -102,7 +102,7 @@ const TableUI = (props: Props) => {
         dataSource={indexData}
         columns={columnsWithOption}
         rowKey="id"
-        rowSelection={showSelection ? { ...rowSelection, type: 'checkbox' } : undefined}
+        rowSelection={showSelection ? { ...rowSelection, type: 'radio' } : undefined}
         onRow={(record, rowIndex) => ({
           onClick: (event) => {
             handleClickRow(record, rowIndex);

@@ -41,3 +41,10 @@ export const DEFAULT_SCOPE: Scope = {
   name: '',
   description: '',
 };
+
+export const DEFAULT_ROLE: Role = {
+  id: '',
+  name: '',
+  scopes: [],
+  description: '',
+};

@@ -5,3 +5,8 @@ export interface DialogProps {
   onClose: () => void;
   onConfirm: () => void;
 }
+
+export enum FormMode {
+  Create,
+  Update,
+}

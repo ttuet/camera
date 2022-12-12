@@ -35,8 +35,8 @@ const ConfirmDialog = (props: Props) => {
       centered
       className={`confirm-dialog  ${className}`}
       destroyOnClose
-      okButtonProps={{ className: 'camera-button camera-button-confirm' }}
-      cancelButtonProps={{ className: 'camera-button camera-button-cancel' }}
+      // okButtonProps={{ className: 'camera-button camera-button-confirm' }}
+      // cancelButtonProps={{ className: 'camera-button camera-button-cancel' }}
     >
       <p>{content}</p>
     </Modal>

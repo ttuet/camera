@@ -17,20 +17,20 @@ import { toast } from 'react-toastify';
 
 import FormInput from '../../../components/common/FormInput';
 import { Dialog } from '../../../components/common/TableUI/components/Dialog';
-import { DEFAULT_SCOPE, Scope } from '../type';
+import { DEFAULT_ROLE, Role } from '../type';
 import { FormMode } from '../../../types';
-import { createScope, updateScope } from '../services/scope';
+import { createRole, updateRole } from '../services/role';
 
 type Props = {
   open: boolean;
   title: string;
   onCancel: () => void;
   onConfirm: () => void;
-  initData: Scope;
+  initData: Role;
   formMode: FormMode;
 };
 
-const DialogScope = (props: Props) => {
+const DialogRole = (props: Props) => {
   const { open, title, onCancel, onConfirm, initData, formMode } = props;
   const [form] = Form.useForm();
 
@@ -40,9 +40,9 @@ const DialogScope = (props: Props) => {
   };
 
   const initDataValue = useMemo(() => {
-    if (formMode === FormMode.Create) return DEFAULT_SCOPE;
+    if (formMode === FormMode.Create) return DEFAULT_ROLE;
     if (formMode === FormMode.Update) return initData;
-    return DEFAULT_SCOPE;
+    return DEFAULT_ROLE;
   }, [formMode, initData]);
 
   const handleConfirm = () => {
@@ -50,8 +50,8 @@ const DialogScope = (props: Props) => {
     form.submit();
   };
 
-  function callApiCreate(data: Scope) {
-    createScope(data)
+  function callApiCreate(data: Role) {
+    createRole(data)
       .then((res) => {
         console.log('data form create', res);
       })
@@ -60,8 +60,8 @@ const DialogScope = (props: Props) => {
       });
   }
 
-  function callApiUpdate(data: Scope) {
-    updateScope(initData.id, data)
+  function callApiUpdate(data: Role) {
+    updateRole(initData.id, data)
       .then((res) => {
         console.log('data form update', res);
       })
@@ -112,4 +112,4 @@ const DialogScope = (props: Props) => {
   );
 };
 
-export default DialogScope;
+export default DialogRole;

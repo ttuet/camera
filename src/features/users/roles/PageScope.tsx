@@ -4,8 +4,8 @@ import ConfirmDialog from '../../../components/common/confirmDialog/ConfirmDialo
 import TableUI from '../../../components/common/TableUI/components/TableUI';
 import { FormMode } from '../../../types';
 import { deleteScope } from '../services/scope';
-import { DEFAULT_SCOPE, Scope } from '../type';
-import DialogScope from './DialogScope';
+import { DEFAULT_ROLE, Role } from '../type';
+import DialogRole from './DialogRole';
 import './index.scss';
 
 const data = [
@@ -47,18 +47,18 @@ const columns = [
   },
 ];
 
-type StateDialog = {
+type RoleDialog = {
   isOpen: boolean;
   type: FormMode; /// 0 is create 1 is Edit
 };
 
-const initStateDialog: StateDialog = {
+const initRoleDialog: RoleDialog = {
   isOpen: false,
   type: FormMode.Create,
 };
-export function PageScopes() {
-  const [openDialog, setOpenDialog] = useState(initStateDialog);
-  const [selectedItem, setSelectedItem] = useState<Scope | null>(null);
+export function PageRoles() {
+  const [openDialog, setOpenDialog] = useState(initRoleDialog);
+  const [selectedItem, setSelectedItem] = useState<Role | null>(null);
   const [openDelete, setOpenDelete] = useState(false);
 
   const handleClickRow = (_data: any) => {
@@ -86,22 +86,22 @@ export function PageScopes() {
     if (selectedItem)
       deleteScope(selectedItem.id)
         .then(() => {
-          toast.success('Xóa quyền thành công');
+          toast.success('Xóa vai trò thành công');
         })
         .catch(() => {
-          toast.error('Xoá quyền thất bại');
+          toast.error('Xoá vai trò thất bại');
         });
   };
 
   return (
-    <div className="page-scopes">
+    <div className="page-roles">
       <TableUI
         onClickRow={handleClickRow}
         showSelection
         hiddenDelete
         hasTitle
-        className="table-scopes"
-        title="Danh sách quyền"
+        className="table-roles"
+        title="Danh sách vai trò"
         columns={columns}
         data={data}
         onCreate={() => {
@@ -116,20 +116,20 @@ export function PageScopes() {
         onSelectRowKeysChange={handleChangeSelecteds}
       />
       {openDialog.isOpen && (
-        <DialogScope
-          initData={selectedItem !== null ? selectedItem : DEFAULT_SCOPE}
+        <DialogRole
+          initData={selectedItem !== null ? selectedItem : DEFAULT_ROLE}
           open={true}
           onCancel={handleClose}
           onConfirm={handleConfirm}
-          title={openDialog.type === 0 ? 'Tạo mới quyền' : 'Cập nhật quyền'}
+          title={openDialog.type === 0 ? 'Tạo mới vai trò' : 'Cập nhật vai trò'}
           formMode={openDialog.type}
         />
       )}
 
       <ConfirmDialog
         open={openDelete}
-        title="Xóa quyền"
-        content="Bạn có chắc muốn xóa quyền này không?"
+        title="Xóa vai trò"
+        content="Bạn có chắc muốn xóa vai trò này không?"
         onCancel={() => {
           setOpenDelete(false);
         }}
@@ -139,4 +139,4 @@ export function PageScopes() {
   );
 }
 
-export default PageScopes;
+export default PageRoles;
