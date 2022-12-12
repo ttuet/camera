@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConfigProvider } from 'antd';
+import { AuthProvider } from './AuthProvider';
 
 type ErrorProps = {
   error: any;
@@ -30,12 +31,14 @@ const AppProviders = (props: Props) => {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#31B1B4',
+            colorPrimary: '#FB8500',
           },
         }}
       >
         <ErrorBoundary FallbackComponent={OurFallbackComponent}>
-          <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+          <QueryClientProvider client={queryClient}>
+            <AuthProvider>{children}</AuthProvider>
+          </QueryClientProvider>
         </ErrorBoundary>
       </ConfigProvider>
     </Suspense>

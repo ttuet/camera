@@ -3,7 +3,7 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { ToastContainer } from 'react-toastify';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
 import AppProviders from './providers/AppProviders';
 import { PublicLayout } from './components/Layout/Component/PublicLayout';
@@ -24,6 +24,8 @@ function App() {
                   const Page = item.component;
                   return <Route key={item.path} path={item.path} element={<Page />} />;
                 })}
+
+                <Route path="*" element={<Navigate to="/login" />} />
               </Routes>
             </PublicLayout>
           ) : (

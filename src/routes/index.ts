@@ -6,9 +6,11 @@ import Sample from '../components/common/confirmDialog/Sample';
 import PageUsers from '../features/users/components/PageUsers';
 import PageStaff from '../features/persons/staff/component/PageStaff';
 import PageStudent from '../features/persons/students/component/PageStudent';
+import PageCamera from '../features/camera/PageCamera';
+import PageScope from '../features/users/scopes/PageScope';
 
 const publicRoutes = [
-  { path: '*', component: LoginPage },
+  { path: '/login', component: LoginPage },
   { path: '/register', component: Register },
   { path: '/forgot-password', component: ForgotPassword },
   { path: '/test', component: Sample },
@@ -19,6 +21,8 @@ const privateRoutes = [
   { path: '/users', component: PageUsers },
   { path: '/students', component: PageStaff },
   { path: '/staffs', component: PageStudent },
+  { path: '/camera', component: PageCamera },
+  { path: '/scopes', component: PageScope },
 ];
 
 export { publicRoutes, privateRoutes };

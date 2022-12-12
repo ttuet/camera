@@ -15,5 +15,13 @@
       margin: auto 0;
       min-height: 40px;
     }
+    .ant-table {
+      &-thead {
+        .ant-table-cell {
+          // background-color: var(--cl_primary);
+          color: black;
+        }
+      }
+    }
   }
 }
