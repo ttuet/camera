@@ -69,7 +69,7 @@ const LoginPage: React.FC = () => {
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input placeholder="sample@gmail.com" />
+          <Input placeholder="sample@gmail.com" style={{ color: 'white' }} />
         </Form.Item>
 
         <Form.Item
@@ -77,13 +77,13 @@ const LoginPage: React.FC = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password placeholder="*********" />
+          <Input.Password placeholder="*********" style={{ color: 'white' }} />
         </Form.Item>
 
         <div className="action-container">
           <Form.Item name="remember" valuePropName="checked" className="remeber-me">
             <>
-              <CustomCheckbox style={{}}>Giữ tôi đăng nhập</CustomCheckbox>
+              <CustomCheckbox style={{ color: 'white' }}>Giữ tôi đăng nhập</CustomCheckbox>
               <Link to="/forgot-password" className="fortgot-password">
                 Quên mật khẩu?
               </Link>

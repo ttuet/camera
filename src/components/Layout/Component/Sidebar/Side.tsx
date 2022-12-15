@@ -47,13 +47,16 @@ const menu: MenuProps['items'] = [
     label: 'Quản lý sinh viên',
   },
 ];
-const Side: React.FC = () => {
+const SideBar: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   return (
     <Sider width={200} style={{ background: colorBgContainer }}>
+      <div className="w-full h-32 flex">
+        <div className="logo" style={{ width: '150px', height: '26px', margin: 'auto' }} />
+      </div>
       <Menu
         mode="inline"
         defaultSelectedKeys={['USER']}
@@ -65,4 +68,4 @@ const Side: React.FC = () => {
   );
 };
 
-export default Side;
+export default SideBar;

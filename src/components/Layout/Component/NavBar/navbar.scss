@@ -1,5 +1,5 @@
 .page-navbar {
-  background-color: white;
+  background-color: var(--cl-dark-60);
   height: 100vh;
   width: 15%;
 
@@ -32,7 +32,7 @@
     margin: 4px 0;
   }
   .logo {
-    background-image: url('../../../../assets/images/logo.png');
+    background-image: url('../../../../../public/images/logo.png');
   }
 }
 .item-selected {
@@ -52,11 +52,4 @@
   width: 24px;
   height: 24px;
   margin: auto 6px auto 10px;
-  &__home {
-    background-image: url('../../../../assets/images/home.svg');
-  }
-
-  &__user {
-    background-image: url('../../../../assets/images/user.svg');
-  }
 }

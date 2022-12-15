@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-d
 import { privateRoutes, publicRoutes } from './routes';
 import AppProviders from './providers/AppProviders';
 import { PublicLayout } from './components/Layout/Component/PublicLayout';
-import Layout from './components/Layout/Component/PrivateLayout';
+import PrivateLayout from './components/Layout/Component/PrivateLayout';
 import { useAppSelector } from './hooks';
 
 function App() {
@@ -29,14 +29,14 @@ function App() {
               </Routes>
             </PublicLayout>
           ) : (
-            <Layout>
+            <PrivateLayout>
               <Routes>
                 {privateRoutes.map((item) => {
                   const Page = item.component;
                   return <Route key={item.path} path={item.path} element={<Page />} />;
                 })}
               </Routes>
-            </Layout>
+            </PrivateLayout>
           )}
 
           <ToastContainer position="top-right" hideProgressBar />

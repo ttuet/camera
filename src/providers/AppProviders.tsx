@@ -32,6 +32,7 @@ const AppProviders = (props: Props) => {
         theme={{
           token: {
             colorPrimary: '#FB8500',
+            colorBgContainer: '#5C5C5C',
           },
         }}
       >

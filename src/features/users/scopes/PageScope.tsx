@@ -105,7 +105,7 @@ export function PageScopes() {
         columns={columns}
         data={data}
         onCreate={() => {
-          if (selectedItem) setOpenDialog({ isOpen: true, type: FormMode.Create });
+          setOpenDialog({ isOpen: true, type: FormMode.Create });
         }}
         onUpdate={() => {
           if (selectedItem) setOpenDialog({ isOpen: true, type: FormMode.Update });

@@ -5,7 +5,6 @@ import { usePromiseTracker } from 'react-promise-tracker';
 import Header from './Header/header';
 import Navbar from './NavBar';
 import '../styles/index.scss';
-import Side from './Side/Side';
 
 interface Props {
   children: React.ReactNode;

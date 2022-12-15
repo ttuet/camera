@@ -10,7 +10,8 @@
   left: calc(50% - 420px / 2);
   top: 180px;
 
-  background: #ffffff;
+  background: var(--cl-dark-80);
+  color: #ffffff;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 
@@ -25,7 +26,7 @@
 
     text-align: center;
 
-    color: #000000;
+    color: #ffffff;
 
     /* Inside auto layout */
 
@@ -45,7 +46,7 @@
     font-size: 15px;
     line-height: 20px;
 
-    color: #000000;
+    color: #ffffff;
 
     /* Inside auto layout */
 
@@ -53,6 +54,10 @@
     order: 0;
     align-self: stretch;
     flex-grow: 0;
+
+    & > label {
+      color: #ffffff;
+    }
   }
 
   .remeber-me {
@@ -67,7 +72,9 @@
     line-height: 20px;
     /* identical to box height, or 143% */
 
-    color: #5a7184;
+    & > label {
+      color: #ffffff;
+    }
 
     /* Inside auto layout */
 
@@ -102,17 +109,16 @@
 
     /* Primary/Turquoise */
 
-    color: var(--cl_primary);
-
     /* Inside auto layout */
 
     flex: none;
     order: 1;
     flex-grow: 0;
+
+    color: var(--cl-turquose);
   }
 
   .button-submit {
-    background: var(--cl_primary);
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
@@ -130,6 +136,6 @@
     font-size: 14px;
     line-height: 20px;
 
-    color: #5a7184;
+    color: #ffffff;
   }
 }

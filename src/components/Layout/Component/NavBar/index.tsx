@@ -1,53 +1,32 @@
 import { RightOutlined } from '@ant-design/icons';
+import { Menu, MenuProps, theme } from 'antd';
+import Sider from 'antd/es/layout/Sider';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { fullSideBar } from '../../../../config/appConfig';
+import Icon from './Icon';
 import './navbar.scss';
 
-const fullSideBar = [
+const menu: MenuProps['items'] = [
   {
-    code: 'HOME',
-    icon: 'home',
-    name: 'Trang chủ',
-    path: '/',
+    key: 'USER',
+    label: 'Quản lý người dùng',
+    icon: Icon({ name: 'home' }),
+    children: [
+      {
+        key: 'USER_MANAGER',
+        label: 'Quản lý người dùng',
+      },
+    ],
   },
   {
-    code: 'USER',
-    icon: 'user',
-    name: 'Quản lý người dùng',
-    path: '/users',
-  },
-  {
-    code: 'ROLE',
-    icon: 'role',
-    name: 'Quản lý vai trò',
-    path: '/roles',
-  },
-  {
-    code: 'SCOPE',
-    icon: 'scope',
-    name: 'Quản lý quyền',
-    path: '/scopes',
-  },
-  {
-    code: 'STUDENT',
-    icon: 'user',
-    name: 'Quản lý sinh viên',
-    path: '/students',
-  },
-  {
-    code: 'STAFF',
-    icon: 'user',
-    name: 'Quản lý nhân viên',
-    path: '/staffs',
-  },
-  {
-    code: 'CAMERA',
-    icon: 'camera',
-    name: 'Camera',
-    path: '/camera',
+    key: 'STUDENT',
+    label: 'Quản lý sinh viên',
   },
 ];
+
 const Navbar = () => {
+  const { token } = theme.useToken();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -60,7 +39,8 @@ const Navbar = () => {
       <div className="w-full h-32 flex">
         <div className="logo" style={{ width: '150px', height: '26px', margin: 'auto' }} />
       </div>
-      {fullSideBar.map((item) => (
+
+      {/* {fullSideBar.map((item) => (
         <div
           key={item.code}
           className={`nav-item ${
@@ -75,7 +55,17 @@ const Navbar = () => {
           <p className="text-white w-4/5  text-left item-content">{item.name}</p>
           <RightOutlined />
         </div>
-      ))}
+      ))} */}
+
+      <Sider width="100%">
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['USER']}
+          defaultOpenKeys={['USER']}
+          style={{ height: '100%', borderRight: 0, color: 'white' }}
+          items={menu}
+        />
+      </Sider>
     </div>
   );
 };
