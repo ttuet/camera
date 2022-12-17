@@ -1,51 +1,31 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CustomCheckbox } from '../../../components/Layout/Component/CustomCheckbox';
 import { useAppDispatch } from '../../../hooks';
 import { setToken } from '../../../lib/auth';
+import { AuthContext } from '../../../providers/AuthProvider';
 import { setUser } from '../../../slices/userSlice';
+import { DEFAULT_USER } from '../../users/type';
 import { getAllUser, loginFn } from '../api';
 import './index.scss';
 
-async function postData(url = '', data = {}) {
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      Authentication: 'Basic YWRtaW46YWRtaW4=',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
-
 const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { setUser } = useContext(AuthContext);
 
   function callLoginFn(data: any) {
     loginFn(data.username, data.password).then((res: any) => {
       console.log('res login', res);
     });
-
-    postData('http://localhost:8888/api/authenticate').then((res) => {
-      console.log(res); // JSON data parsed by `data.json()` call
+    setUser(DEFAULT_USER);
+    getAllUser().then((res) => {
+      console.log('all user log', res);
     });
-
-    dispatch(setUser(['dsjhdcn']));
   }
 
   const onFinish = (values: any) => {
     callLoginFn(values);
-    getAllUser().then((res) => {
-      console.log('all user log', res);
-    });
   };
 
   const onFinishFailed = (errorInfo: any) => {

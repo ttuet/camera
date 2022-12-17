@@ -1,7 +1,7 @@
 import { RightOutlined } from '@ant-design/icons';
 import { Menu, MenuProps, theme } from 'antd';
 import Sider from 'antd/es/layout/Sider';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fullSideBar } from '../../../../config/appConfig';
 import Icon from './Icon';
@@ -9,24 +9,23 @@ import './navbar.scss';
 
 const menu: MenuProps['items'] = [
   {
-    key: 'USER',
+    key: '/users',
     label: 'Quản lý người dùng',
     icon: Icon({ name: 'home' }),
     children: [
       {
-        key: 'USER_MANAGER',
+        key: '/users',
         label: 'Quản lý người dùng',
       },
     ],
   },
   {
-    key: 'STUDENT',
-    label: 'Quản lý sinh viên',
+    key: '/devices',
+    label: 'Quản lý thiết bị',
   },
 ];
 
 const Navbar = () => {
-  const { token } = theme.useToken();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,6 +33,11 @@ const Navbar = () => {
     navigate(path);
   };
 
+  const [selectedPath, setSelectedPath] = useState<string[]>([]);
+
+  useEffect(() => {
+    navigate(selectedPath[0]);
+  }, [selectedPath]);
   return (
     <div className="page-navbar">
       <div className="w-full h-32 flex">
@@ -60,10 +64,12 @@ const Navbar = () => {
       <Sider width="100%">
         <Menu
           mode="inline"
-          defaultSelectedKeys={['USER']}
-          defaultOpenKeys={['USER']}
           style={{ height: '100%', borderRight: 0, color: 'white' }}
           items={menu}
+          selectedKeys={selectedPath}
+          onClick={(e) => {
+            setSelectedPath([e.key]);
+          }}
         />
       </Sider>
     </div>

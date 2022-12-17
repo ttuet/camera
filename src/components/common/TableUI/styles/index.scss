@@ -1,4 +1,21 @@
 .table-container {
+  .ant-table {
+    &-cell {
+      color: white;
+    }
+
+    &-row-selected {
+      background-color: var(--cl-turquose);
+
+      & > td {
+        background-color: unset !important;
+      }
+    }
+
+    &-selection-column {
+      background-color: unset;
+    }
+  }
   &__title {
     width: 100%;
     display: flex;
@@ -6,7 +23,7 @@
     justify-content: space-between;
     .table-title {
       padding: 10px;
-      color: rgba(0, 0, 0, 0.88);
+      color: white;
       font-size: 16px;
       font-weight: 700;
     }
@@ -14,14 +31,6 @@
       display: flex;
       margin: auto 0;
       min-height: 40px;
-    }
-    .ant-table {
-      &-thead {
-        .ant-table-cell {
-          // background-color: var(--cl_primary);
-          color: black;
-        }
-      }
     }
   }
 }
