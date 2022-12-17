@@ -1,13 +1,16 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { trackPromise } from 'react-promise-tracker';
+import { getToken } from './auth';
 
 export const AxiosFactory = (baseUrl: string) => {
+  // const token = getToken;
   axios.interceptors.request.use(
     (config: AxiosRequestConfig) => {
-      // To Do: Add interceptor
       config.headers = {
         ...config.headers,
-        'Access-Control-Allow-Origin': '*',
+        Credential: true,
+        'Access-Control-Request-Methods': '*',
+        // Authorization: `Beared ${token}`,
       };
       return config;
     },
@@ -24,7 +27,7 @@ export const AxiosFactory = (baseUrl: string) => {
   const axiosClient = axios.create({
     baseURL: baseUrl,
     headers: {
-      Accept: 'application/json',
+      Accept: '*',
       'Content-Type': 'application/json',
     },
   });

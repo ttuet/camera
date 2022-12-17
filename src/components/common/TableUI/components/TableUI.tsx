@@ -22,6 +22,7 @@ type Props = {
   showSelection: boolean;
   data: any[];
   columns: Column[];
+  onSelectRowKeysChange?: (keys: Key[]) => void;
 };
 
 const TableUI = (props: Props) => {
@@ -38,6 +39,7 @@ const TableUI = (props: Props) => {
     onView,
     onDelete,
     onUpdate,
+    onSelectRowKeysChange,
   } = props;
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
@@ -66,7 +68,12 @@ const TableUI = (props: Props) => {
   const handleClickRow = (_data: any, index?: number) => {
     if (typeof index === 'number') setSelectedRowKeys([index + 1]);
     onClickRow(_data);
+    console.log('click row data ', _data);
   };
+
+  useEffect(() => {
+    if (onSelectRowKeysChange) onSelectRowKeysChange(rowSelection.selectedRowKeys);
+  }, [rowSelection.selectedRowKeys]);
 
   return (
     <div className="table-container">
@@ -95,7 +102,7 @@ const TableUI = (props: Props) => {
         dataSource={indexData}
         columns={columnsWithOption}
         rowKey="id"
-        rowSelection={showSelection ? { ...rowSelection, type: 'checkbox' } : undefined}
+        rowSelection={showSelection ? { ...rowSelection, type: 'radio' } : undefined}
         onRow={(record, rowIndex) => ({
           onClick: (event) => {
             handleClickRow(record, rowIndex);

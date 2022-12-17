@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Dialog } from '../../../components/common/TableUI/components/Dialog';
 import TableUI from '../../../components/common/TableUI/components/TableUI';
 import '../styles/_index.scss';
+import UserDialog from './UserDialog';
 
 const data = [
   {
@@ -212,11 +213,10 @@ export function PageUsers() {
           setOpenDialog(true);
         }}
       />
-      <Dialog
+      <UserDialog
         open={openDialog}
         title="Hello"
         onCancel={handleCancel}
-        onClose={handleCancel}
         onConfirm={handleConfirm}
       />
     </div>

@@ -3,15 +3,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CustomCheckbox } from '../../../components/Layout/Component/CustomCheckbox';
 import { useAppDispatch } from '../../../hooks';
+import { setToken } from '../../../lib/auth';
 import { setUser } from '../../../slices/userSlice';
+import { getAllUser, loginFn } from '../api';
 import './index.scss';
+
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      Authentication: 'Basic YWRtaW46YWRtaW4=',
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
 
 const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
+  function callLoginFn(data: any) {
+    loginFn(data.username, data.password).then((res: any) => {
+      console.log('res login', res);
+    });
+
+    postData('http://localhost:8888/api/authenticate').then((res) => {
+      console.log(res); // JSON data parsed by `data.json()` call
+    });
+
+    dispatch(setUser(['dsjhdcn']));
+  }
+
   const onFinish = (values: any) => {
-    dispatch(setUser(['Tung Tung']));
-    console.log(values);
+    callLoginFn(values);
+    getAllUser().then((res) => {
+      console.log('all user log', res);
+    });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -35,7 +69,7 @@ const LoginPage: React.FC = () => {
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input placeholder="sample@gmail.com" />
+          <Input placeholder="sample@gmail.com" style={{ color: 'white' }} />
         </Form.Item>
 
         <Form.Item
@@ -43,15 +77,17 @@ const LoginPage: React.FC = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password placeholder="*********" />
+          <Input.Password placeholder="*********" style={{ color: 'white' }} />
         </Form.Item>
 
         <div className="action-container">
           <Form.Item name="remember" valuePropName="checked" className="remeber-me">
-            <CustomCheckbox style={{}}>Giữ tôi đăng nhập</CustomCheckbox>
-            <Link to="/forgot-password" className="fortgot-password">
-              Quên mật khẩu?
-            </Link>
+            <>
+              <CustomCheckbox style={{ color: 'white' }}>Giữ tôi đăng nhập</CustomCheckbox>
+              <Link to="/forgot-password" className="fortgot-password">
+                Quên mật khẩu?
+              </Link>
+            </>
           </Form.Item>
         </div>
 

@@ -15,6 +15,12 @@
 
     .ant-spin-container {
       height: 100%;
+
+      & > div {
+        background-color: var(--cl-background-color);
+        height: 100%;
+        padding: 4px;
+      }
     }
   }
 }
