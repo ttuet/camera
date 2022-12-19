@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {user === null ? (
+        {/* {user === null ? (
           <PublicLayout>
             <Routes>
               {publicRoutes.map((item) => {
@@ -34,16 +34,16 @@ function App() {
               <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
           </PublicLayout>
-        ) : (
-          <PrivateLayout>
-            <Routes>
-              {privateRoutes.map((item) => {
-                const Page = item.component;
-                return <Route key={item.path} path={item.path} element={<Page />} />;
-              })}
-            </Routes>
-          </PrivateLayout>
-        )}
+        ) : ( */}
+        <PrivateLayout>
+          <Routes>
+            {privateRoutes.map((item) => {
+              const Page = item.component;
+              return <Route key={item.path} path={item.path} element={<Page />} />;
+            })}
+          </Routes>
+        </PrivateLayout>
+        {/* )} */}
 
         <ToastContainer position="top-right" hideProgressBar />
       </div>

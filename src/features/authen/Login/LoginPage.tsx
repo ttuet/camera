@@ -4,24 +4,31 @@ import { Link } from 'react-router-dom';
 import { CustomCheckbox } from '../../../components/Layout/Component/CustomCheckbox';
 import { useAppDispatch } from '../../../hooks';
 import { setToken } from '../../../lib/auth';
+import { setRefreshToken } from '../../../lib/cookie';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { setUser } from '../../../slices/userSlice';
 import { DEFAULT_USER } from '../../users/type';
-import { getAllUser, loginFn } from '../api';
+import { getAllUser, getUser, loginFn } from '../api';
 import './index.scss';
 
 const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { setUser } = useContext(AuthContext);
-
+  function saveDataLogin(data: any) {
+    sessionStorage.setItem('accessToken', data.accessToken);
+    setRefreshToken(data.refreshToken, data.refreshTimeExpiration);
+  }
   function callLoginFn(data: any) {
     loginFn(data.username, data.password).then((res: any) => {
-      console.log('res login', res);
+      saveDataLogin(res.data);
+      getUser().then((res_user) => {
+        console.log(' user log', res_user);
+      });
     });
-    setUser(DEFAULT_USER);
-    getAllUser().then((res) => {
-      console.log('all user log', res);
-    });
+    // setUser(DEFAULT_USER);
+    // getAllUser().then((res) => {
+    //   console.log('all user log', res);
+    // });
   }
 
   const onFinish = (values: any) => {

@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import ConfirmDialog from '../../../components/common/confirmDialog/ConfirmDialog';
 import TableUI from '../../../components/common/TableUI/components/TableUI';
 import { FormMode } from '../../../types';
-import { deleteDevice } from '../service/api';
-import { Device } from '../type';
+import DialogScope from '../../users/scopes/DialogScope';
+import { DEFAULT_SCOPE } from '../../users/type';
+import { deleteDevice, getAllDevice } from '../service/api';
+import { DEFAULT_DEVICE, Device } from '../type';
+import DialogDevice from './DialogDevice';
 
 const columns = [
   {
@@ -74,7 +78,7 @@ function PageDevice() {
   };
 
   const handleDeleteItem = () => {
-    if (selectedItem )
+    if (selectedItem)
       deleteDevice(selectedItem.id ?? '')
         .then(() => {
           toast.success('Xóa thiết bị thành công');
@@ -84,6 +88,15 @@ function PageDevice() {
         });
   };
 
+  useEffect(() => {
+    getAllDevice()
+      .then((data) => {
+        console.log('data all device', data);
+      })
+      .catch(() => {
+        toast.error('CO loio');
+      });
+  }, []);
   return (
     <div className="page-device">
       <TableUI
@@ -94,7 +107,7 @@ function PageDevice() {
         className="table-device"
         title="Danh sách thiết bị"
         columns={columns}
-        data={data}
+        data={[]}
         onCreate={() => {
           setOpenDialog({ isOpen: true, type: FormMode.Create });
         }}
@@ -107,20 +120,20 @@ function PageDevice() {
         onSelectRowKeysChange={handleChangeSelecteds}
       />
       {openDialog.isOpen && (
-        <DialogScope
-          initData={selectedItem !== null ? selectedItem : DEFAULT_SCOPE}
+        <DialogDevice
+          initData={selectedItem !== null ? selectedItem : DEFAULT_DEVICE}
           open={true}
           onCancel={handleClose}
           onConfirm={handleConfirm}
-          title={openDialog.type === 0 ? 'Tạo mới quyền' : 'Cập nhật quyền'}
+          title={openDialog.type === 0 ? 'Tạo mới thiết bị' : 'Cập nhật thiết bị'}
           formMode={openDialog.type}
         />
       )}
 
       <ConfirmDialog
         open={openDelete}
-        title="Xóa quyền"
-        content="Bạn có chắc muốn xóa quyền này không?"
+        title="Xóa thiết bị"
+        content="Bạn có chắc muốn xóa thiết bị này không?"
         onCancel={() => {
           setOpenDelete(false);
         }}
