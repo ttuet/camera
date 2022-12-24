@@ -1,33 +1,30 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { trackPromise } from 'react-promise-tracker';
+import { getRefreshToken } from './cookie';
 
-export const AxiosFactory = (baseUrl: string) => {
+const headers = (config: AxiosRequestConfig) => {
   const token = sessionStorage.getItem('accessToken');
 
+  config.headers = {
+    ...config.headers,
+    Credential: true,
+    'Access-Control-Request-Methods': '*',
+    Authorization: `Bearer ${token}`,
+  };
+  return config;
+};
+
+axios.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  (error: any) => Promise.reject(error)
+);
+
+export const AxiosFactory = (baseUrl: string) => {
   const axiosClient = axios.create({
     baseURL: baseUrl,
   });
 
-  axiosClient.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
-      config.headers = {
-        ...config.headers,
-        Credential: true,
-        'Access-Control-Request-Methods': '*',
-        Authorization: `Bearer ${token}`,
-      };
-      return config;
-    },
-    (error: any) => {
-      console.log('Error', error);
-    }
-  );
-
-  axiosClient.interceptors.response.use(
-    (response: AxiosResponse) => response,
-    (error: any) => Promise.reject(error)
-  );
-
+  axiosClient.interceptors.request.use(headers);
   const getFnc = (path: string, config?: AxiosRequestConfig) =>
     trackPromise(axiosClient.get(path, config));
 

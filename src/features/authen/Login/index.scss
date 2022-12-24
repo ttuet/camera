@@ -138,4 +138,10 @@
 
     color: #ffffff;
   }
+
+  .input-cl-white {
+    & > input {
+      color: #fff;
+    }
+  }
 }

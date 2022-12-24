@@ -2,33 +2,27 @@ import { Button, Form, Input, Space, Typography } from 'antd';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CustomCheckbox } from '../../../components/Layout/Component/CustomCheckbox';
-import { useAppDispatch } from '../../../hooks';
-import { setToken } from '../../../lib/auth';
 import { setRefreshToken } from '../../../lib/cookie';
+import { setAccessToken } from '../../../lib/session';
 import { AuthContext } from '../../../providers/AuthProvider';
-import { setUser } from '../../../slices/userSlice';
-import { DEFAULT_USER } from '../../users/type';
-import { getAllUser, getUser, loginFn } from '../api';
+import { getCurrentUser, getUserById, loginFn } from '../api';
 import './index.scss';
 
 const LoginPage: React.FC = () => {
-  const dispatch = useAppDispatch();
   const { setUser } = useContext(AuthContext);
   function saveDataLogin(data: any) {
-    sessionStorage.setItem('accessToken', data.accessToken);
+    setAccessToken(data.accessToken);
     setRefreshToken(data.refreshToken, data.refreshTimeExpiration);
   }
   function callLoginFn(data: any) {
     loginFn(data.username, data.password).then((res: any) => {
       saveDataLogin(res.data);
-      getUser().then((res_user) => {
-        console.log(' user log', res_user);
+      getCurrentUser().then((data) => {
+        getUserById('639a47b2ff76ca1e380a4bff').then((user) => {
+          setUser(user.data);
+        });
       });
     });
-    // setUser(DEFAULT_USER);
-    // getAllUser().then((res) => {
-    //   console.log('all user log', res);
-    // });
   }
 
   const onFinish = (values: any) => {
@@ -54,17 +48,25 @@ const LoginPage: React.FC = () => {
         <Form.Item
           label="Tên đăng nhập"
           name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          rules={[{ required: true, message: 'Mời nhập tên đăng nhập' }]}
         >
-          <Input placeholder="sample@gmail.com" style={{ color: 'white' }} />
+          <Input
+            placeholder="sample@gmail.com"
+            style={{ color: 'white' }}
+            className="input-cl-white"
+          />
         </Form.Item>
 
         <Form.Item
           label="Mật khẩu"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[{ required: true, message: 'Mời nhập mật khẩu' }]}
         >
-          <Input.Password placeholder="*********" style={{ color: 'white' }} />
+          <Input.Password
+            placeholder="*********"
+            style={{ color: 'white' }}
+            className="input-cl-white"
+          />
         </Form.Item>
 
         <div className="action-container">
