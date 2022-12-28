@@ -1,51 +1,32 @@
 import { Button, Form, Input, Space, Typography } from 'antd';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CustomCheckbox } from '../../../components/Layout/Component/CustomCheckbox';
-import { useAppDispatch } from '../../../hooks';
-import { setToken } from '../../../lib/auth';
-import { setUser } from '../../../slices/userSlice';
-import { getAllUser, loginFn } from '../api';
+import { setRefreshToken } from '../../../lib/cookie';
+import { setAccessToken } from '../../../lib/session';
+import { AuthContext } from '../../../providers/AuthProvider';
+import { getCurrentUser, getUserById, loginFn } from '../api';
 import './index.scss';
 
-async function postData(url = '', data = {}) {
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      Authentication: 'Basic YWRtaW46YWRtaW4=',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
-
 const LoginPage: React.FC = () => {
-  const dispatch = useAppDispatch();
-
+  const { setUser } = useContext(AuthContext);
+  function saveDataLogin(data: any) {
+    setAccessToken(data.accessToken);
+    setRefreshToken(data.refreshToken, data.refreshTimeExpiration);
+  }
   function callLoginFn(data: any) {
     loginFn(data.username, data.password).then((res: any) => {
-      console.log('res login', res);
+      saveDataLogin(res.data);
+      getCurrentUser().then((data) => {
+        getUserById('639a47b2ff76ca1e380a4bff').then((user) => {
+          setUser(user.data);
+        });
+      });
     });
-
-    postData('http://localhost:8888/api/authenticate').then((res) => {
-      console.log(res); // JSON data parsed by `data.json()` call
-    });
-
-    dispatch(setUser(['dsjhdcn']));
   }
 
   const onFinish = (values: any) => {
     callLoginFn(values);
-    getAllUser().then((res) => {
-      console.log('all user log', res);
-    });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -67,17 +48,25 @@ const LoginPage: React.FC = () => {
         <Form.Item
           label="Tên đăng nhập"
           name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          rules={[{ required: true, message: 'Mời nhập tên đăng nhập' }]}
         >
-          <Input placeholder="sample@gmail.com" style={{ color: 'white' }} />
+          <Input
+            placeholder="sample@gmail.com"
+            style={{ color: 'white' }}
+            className="input-cl-white"
+          />
         </Form.Item>
 
         <Form.Item
           label="Mật khẩu"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[{ required: true, message: 'Mời nhập mật khẩu' }]}
         >
-          <Input.Password placeholder="*********" style={{ color: 'white' }} />
+          <Input.Password
+            placeholder="*********"
+            style={{ color: 'white' }}
+            className="input-cl-white"
+          />
         </Form.Item>
 
         <div className="action-container">

@@ -2,7 +2,7 @@
   padding: 4px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--cl-dark-70);
 
   height: 100%;
   .table-users {
@@ -10,7 +10,7 @@
       &-thead {
         .ant-table-cell {
           // background-color: var(--cl_primary);
-          color: black;
+          color: white;
         }
       }
     }

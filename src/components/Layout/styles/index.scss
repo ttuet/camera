@@ -10,14 +10,14 @@
     overflow: auto;
     width: 100%;
     height: calc(100vh - var(--sz_header_height));
-    background-color: #e5e5e5;
+    background-color: var(--cl-dark-80);
     padding: 8px;
 
     .ant-spin-container {
       height: 100%;
 
       & > div {
-        background-color: var(--cl-background-color);
+        background-color: var(--cl-dark-70);
         height: 100%;
         padding: 4px;
       }

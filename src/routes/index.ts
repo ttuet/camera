@@ -9,6 +9,7 @@ import PageStudent from '../features/persons/students/component/PageStudent';
 import PageCamera from '../features/camera/PageCamera';
 import PageScope from '../features/users/scopes/PageScope';
 import PageRoles from '../features/users/roles/PageScope';
+import PageDevice from '../features/devices/component/PageDevice';
 
 const publicRoutes = [
   { path: '/login', component: LoginPage },
@@ -25,6 +26,7 @@ const privateRoutes = [
   { path: '/camera', component: PageCamera },
   { path: '/scopes', component: PageScope },
   { path: '/roles', component: PageRoles },
+  { path: '/devices', component: PageDevice },
 ];
 
 export { publicRoutes, privateRoutes };
